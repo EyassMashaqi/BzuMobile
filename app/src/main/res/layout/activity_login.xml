@@ -67,8 +67,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aldrich"
                 android:text="Remember Me"
-                app:layout_column="0"
-                app:layout_row="1" />
+                 />
 
             <Button
                 android:id="@+id/loginbtn"
