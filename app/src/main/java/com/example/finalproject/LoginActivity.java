@@ -3,7 +3,9 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,22 +31,26 @@ public class LoginActivity extends AppCompatActivity {
    private Button signup;
     private Button Login;
     private CheckBox check;
-
-
-
-
+    private boolean flag = false;
+    private SharedPreferences prefs;
+    private static SharedPreferences.Editor editor;
+    public static final String NAME = "NAME";
+    public static final String PASS = "PASS";
+    public static final String FLAG = "FLAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         userid=findViewById(R.id.iduser);
         password=findViewById(R.id.pass);
         check=findViewById(R.id.Remember);
         signup=findViewById(R.id.signbtn);
         Login=findViewById(R.id.loginbtn);
-
+        setupSharedPrefs();
+        checkPrefs();
 
 
 //        Login.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
-                finish();
 
             }
 
@@ -75,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                  Toast.makeText(LoginActivity.this,"Please Fill All Fields",Toast.LENGTH_SHORT).show();
              }else{
                  checkUser(userID,passuser);
-                 finish();
+
              }
 
          }
@@ -91,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
             postData.put("user_id", idUser);
             postData.put("password", userpass);
         }catch (JSONException e){
-
+            e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST,url,postData,response -> {
             Log.d("LoginResponse", response.toString());
@@ -101,6 +106,19 @@ public class LoginActivity extends AppCompatActivity {
                     String user_name = response.getString("name");
                     Intent intent=new Intent(LoginActivity.this,FirstPageActivity.class);
                     intent.putExtra("user_name", user_name);
+                    if (check.isChecked()) {
+                        if (!flag) {
+                            editor.putString(NAME, userid.getText().toString());
+                            editor.putString(PASS, password.getText().toString());
+                            editor.putBoolean(FLAG, true);
+                            editor.commit();
+                        }
+                    } else {
+                        editor.putString(NAME, "");
+                        editor.putString(PASS, "");
+                        editor.putBoolean(FLAG, false);
+                        editor.commit();
+                    }
                     startActivity(intent);
 
                 }else{
@@ -125,7 +143,22 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void checkPrefs() {
+        flag = prefs.getBoolean(FLAG, false);
 
+        if (flag) {
+            String name = prefs.getString(NAME, "");
+            String ps = prefs.getString(PASS, "");
+            userid.setText(name);
+            password.setText(ps);
+            check.setChecked(true);
+        }
+    }
+
+    private void setupSharedPrefs() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = prefs.edit();
+    }
 
 
 }
