@@ -1,38 +1,35 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText userid;
-    EditText user_name;
-    EditText pass1;
-    EditText pass2;
-    Button signupuser;
+   private EditText userid;
+   private EditText user_name;
+   private EditText pass1;
+   private EditText pass2;
+   private Button signupuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        userid=findViewById(R.id.userid);
-        user_name=findViewById(R.id.username);
+        userid=findViewById(R.id.Userid);
+        user_name=findViewById(R.id.Username);
         pass1=findViewById(R.id.crepass);
         pass2=findViewById(R.id.crepass2);
         signupuser = findViewById(R.id.signupbtn);

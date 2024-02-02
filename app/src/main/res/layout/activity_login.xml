@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backg"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/iduser"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -42,7 +42,7 @@
                 android:drawableLeft="@drawable/baseline_person_2_24"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="Username"
+                android:hint="user id"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:textColor="@color/black" />
@@ -60,6 +60,15 @@
                 android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="textPassword" />
+
+            <CheckBox
+                android:id="@+id/Remember"
+                android:layout_width="169dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aldrich"
+                android:text="Remember Me"
+                app:layout_column="0"
+                app:layout_row="1" />
 
             <Button
                 android:id="@+id/loginbtn"
