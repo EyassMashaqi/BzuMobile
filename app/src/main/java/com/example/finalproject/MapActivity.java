@@ -8,6 +8,9 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -22,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +36,15 @@ import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
+
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+
+//import com.google.android.gms.location.FusedLocationProviderClient;
+//import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
 
@@ -41,6 +54,8 @@ public class MapActivity extends AppCompatActivity {
     private ListView filterList;
     private ArrayList<AllMarks> allMarks;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
+    private double userLat, userLon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +66,11 @@ public class MapActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
 
-
-
         Context ctx = this.getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
         try {
             setContentView(R.layout.activity_map);
-        }catch (Exception e){
+        } catch (Exception e) {
             //  e.printStackTrace();
         }
 
@@ -92,68 +105,67 @@ public class MapActivity extends AppCompatActivity {
         allMarks = new ArrayList<>();
 
 
-        String url="http://10.0.2.2:5000/marker";
+        String url = "http://10.0.2.2:5000/marker";
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET,url, null,
-                new Response.Listener<JSONArray>(){
-                    public void onResponse(JSONArray response){
-                        String str="";
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    public void onResponse(JSONArray response) {
+                        String str = "";
                         try {
                             str = response.getString(0);
-                            for(int i=0;i<response.length();i++){
+                            for (int i = 0; i < response.length(); i++) {
                                 JSONArray temp = response.getJSONArray(i);
                                 String type = temp.getString(1);
                                 boolean isExist = false;
-                                for(AllMarks mark : allMarks){
-                                    if(mark.getType().equals(type)){
+                                for (AllMarks mark : allMarks) {
+                                    if (mark.getType().equals(type)) {
                                         isExist = true;
                                     }
                                 }
-                                if(!isExist) {
-                                    Log.d("newone",type);
+                                if (!isExist) {
+                                    Log.d("newone", type);
                                     AllMarks tempMark = new AllMarks(map, type);
                                     allMarks.add(tempMark);
                                 }
                             }
-                            for(int i=0;i<response.length();i++){
+                            for (int i = 0; i < response.length(); i++) {
                                 JSONArray temp = response.getJSONArray(i);
                                 String type = temp.getString(1);
                                 double lat = temp.getDouble(2);
                                 double lon = temp.getDouble(3);
                                 String name = temp.getString(0);
-                               // AllMarks tempMark = new AllMarks(map,type);
+                                // AllMarks tempMark = new AllMarks(map,type);
                                 //search for the type if in the list
                                 AllMarks tempMark = null;
-                                for(AllMarks mark : allMarks){
-                                    if(mark.getType().equals(type)){
+                                for (AllMarks mark : allMarks) {
+                                    if (mark.getType().equals(type)) {
                                         tempMark = mark;
                                         break;
                                     }
                                 }
-                                if(tempMark==null){
-                                    tempMark = new AllMarks(map,"NA");
+                                if (tempMark == null) {
+                                    tempMark = new AllMarks(map, "NA");
                                     allMarks.add(tempMark);
                                 }
-                                if(type.equals("other"))
-                                    type="";
-                                tempMark.addMarker(lat,lon,name+" "+type,type);
-                               // allMarks.add(tempMark);
+                                if (type.equals("Other"))
+                                    type = "";
+                                tempMark.addMarker(lat, lon, name + " " + type, type);
                             }
                             ArrayAdapter<AllMarks> adapter = new ArrayAdapter<>(MapActivity.this, android.R.layout.simple_list_item_1, allMarks);
                             filterList.setAdapter(adapter);
-                            Log.d("size_marker",allMarks.size()+"");
+                            Log.d("size_marker", allMarks.size() + "");
                             filterList.setOnItemClickListener((parent, view, position, id) -> {
                                 AllMarks tempMarker = (AllMarks) parent.getItemAtPosition(position);
                                 tempMarker.toggleMarker(tempMarker.getMarkers());
                             });
 
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
                     }
-                },new Response.ErrorListener(){
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(MapActivity.this, "error fetching data ",
@@ -163,6 +175,30 @@ public class MapActivity extends AppCompatActivity {
         });
         queue.add(request);
 
+        MyLocationNewOverlay mLocationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(this), map);
+
+        mLocationOverlay.enableMyLocation();
+     //   mLocationOverlay.enableFollowLocation();
+
+
+//        userLat=31.958198;
+//        userLon=35.184281;
+        if(31.964218 > userLat && userLat > 31.955589 && 35.187734 > userLon && userLon > 35.176713){
+            map.getOverlays().add(mLocationOverlay);
+//            //new geo point for demo
+//            GeoPoint userPoint = new GeoPoint(userLat, userLon);
+//            Marker userMarker = new Marker(map);
+//            userMarker.setPosition(userPoint);
+//            //userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
+//            userMarker.setIcon(getResources().getDrawable(org.osmdroid.library.R.drawable.person));
+//            userMarker.setTitle("You are here");
+//            map.getOverlays().add(userMarker);
+//            //map.getController().setCenter(userPoint);
+            Log.d("location","in the area");
+        }
+        else
+            Toast.makeText(MapActivity.this, "You are not in the University area",
+                    Toast.LENGTH_SHORT).show();
 
     }
 
