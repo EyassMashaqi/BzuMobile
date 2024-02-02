@@ -98,9 +98,9 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 boolean success = response.getBoolean("success");
                 if (success){//200
-                    //String user_name = response.getString("user_name");
+                    String user_name = response.getString("name");
                     Intent intent=new Intent(LoginActivity.this,FirstPageActivity.class);
-                    //intent.putExtra("user_name", user_name);
+                    intent.putExtra("user_name", user_name);
                     startActivity(intent);
 
                 }else{
