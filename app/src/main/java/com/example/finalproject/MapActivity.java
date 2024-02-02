@@ -9,10 +9,22 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -22,13 +34,12 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MapActivity extends AppCompatActivity {
 
     public MapView map = null;
     private ListView filterList;
-
+    private ArrayList<AllMarks> allMarks;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
 
     @Override
@@ -36,15 +47,20 @@ public class MapActivity extends AppCompatActivity {
         //create map and put all markers on it
         //make enum class, with list of markers,with name to easy fetching from database
         super.onCreate(savedInstanceState);
-        try {
-            setContentView(R.layout.activity_map);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+
 
 
         Context ctx = this.getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
+        try {
+            setContentView(R.layout.activity_map);
+        }catch (Exception e){
+            //  e.printStackTrace();
+        }
+
 
         map = findViewById(R.id.mapview);
 
@@ -73,15 +89,81 @@ public class MapActivity extends AppCompatActivity {
 
 
         map.getController().setCenter(point);
-        List<AllMarks> allMarks = new ArrayList<>();
+        allMarks = new ArrayList<>();
 
-        ArrayAdapter<AllMarks> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allMarks);
-        filterList.setAdapter(adapter);
 
-        filterList.setOnItemClickListener((parent, view, position, id) -> {
-            AllMarks tempMarker = (AllMarks) parent.getItemAtPosition(position);
-            tempMarker.toggleMarker(tempMarker.getMarkers());
+        String url="http://10.0.2.2:5000/marker";
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest request=new JsonArrayRequest(Request.Method.GET,url, null,
+                new Response.Listener<JSONArray>(){
+                    public void onResponse(JSONArray response){
+                        String str="";
+                        try {
+                            str = response.getString(0);
+                            for(int i=0;i<response.length();i++){
+                                JSONArray temp = response.getJSONArray(i);
+                                String type = temp.getString(1);
+                                boolean isExist = false;
+                                for(AllMarks mark : allMarks){
+                                    if(mark.getType().equals(type)){
+                                        isExist = true;
+                                    }
+                                }
+                                if(!isExist) {
+                                    Log.d("newone",type);
+                                    AllMarks tempMark = new AllMarks(map, type);
+                                    allMarks.add(tempMark);
+                                }
+                            }
+                            for(int i=0;i<response.length();i++){
+                                JSONArray temp = response.getJSONArray(i);
+                                String type = temp.getString(1);
+                                double lat = temp.getDouble(2);
+                                double lon = temp.getDouble(3);
+                                String name = temp.getString(0);
+                               // AllMarks tempMark = new AllMarks(map,type);
+                                //search for the type if in the list
+                                AllMarks tempMark = null;
+                                for(AllMarks mark : allMarks){
+                                    if(mark.getType().equals(type)){
+                                        tempMark = mark;
+                                        break;
+                                    }
+                                }
+                                if(tempMark==null){
+                                    tempMark = new AllMarks(map,"NA");
+                                    allMarks.add(tempMark);
+                                }
+                                if(type.equals("other"))
+                                    type="";
+                                tempMark.addMarker(lat,lon,name+" "+type,type);
+                               // allMarks.add(tempMark);
+                            }
+                            ArrayAdapter<AllMarks> adapter = new ArrayAdapter<>(MapActivity.this, android.R.layout.simple_list_item_1, allMarks);
+                            filterList.setAdapter(adapter);
+                            Log.d("size_marker",allMarks.size()+"");
+                            filterList.setOnItemClickListener((parent, view, position, id) -> {
+                                AllMarks tempMarker = (AllMarks) parent.getItemAtPosition(position);
+                                tempMarker.toggleMarker(tempMarker.getMarkers());
+                            });
+
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+
+                    }
+                },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MapActivity.this, "error fetching data ",
+                        Toast.LENGTH_SHORT).show();
+                Log.d("VolleyError", error.toString());
+            }
         });
+        queue.add(request);
+
+
     }
 
     @Override
