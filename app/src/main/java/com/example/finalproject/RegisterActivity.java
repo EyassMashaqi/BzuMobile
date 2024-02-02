@@ -1,6 +1,8 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,7 +64,10 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Password must be at least 8 characters long", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 addUser(userID, userName, passuser);
+                Intent intent=new Intent(RegisterActivity.this,FirstPageActivity.class);
+                startActivity(intent);
             }
         });
     }
