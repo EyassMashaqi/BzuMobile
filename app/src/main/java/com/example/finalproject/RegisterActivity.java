@@ -66,8 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 addUser(userID, userName, passuser);
-                Intent intent=new Intent(RegisterActivity.this,FirstPageActivity.class);
-                startActivity(intent);
+
             }
         });
     }
@@ -90,6 +89,9 @@ public class RegisterActivity extends AppCompatActivity {
                         String str="";
                         try {
                             str = response.getString("result");
+                            Intent intent=new Intent(RegisterActivity.this,FirstPageActivity.class);
+                            intent.putExtra("user_name", username);
+                            startActivity(intent);
                         }catch (JSONException e){
                             e.printStackTrace();
                         }
