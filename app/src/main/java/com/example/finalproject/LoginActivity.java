@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                 boolean success = response.getBoolean("success");
                 if (success){//200
                     String user_name = response.getString("name");
-                    Intent intent=new Intent(LoginActivity.this,FirstPageActivity.class);
+                    Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
                     intent.putExtra("user_name", user_name);
                     if (check.isChecked()) {
                         if (!flag) {
