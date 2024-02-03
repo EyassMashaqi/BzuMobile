@@ -75,8 +75,9 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#006325"
+                android:fontFamily="@font/aldrich"
                 android:text="Login"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/signbtn"
@@ -84,8 +85,9 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#006325"
+                android:fontFamily="@font/aldrich"
                 android:text="Sign up"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
 
 
 
