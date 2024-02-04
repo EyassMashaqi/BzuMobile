@@ -28,6 +28,12 @@
             android:name=".FirstPageActivity"
             android:exported="false" />
         <activity
+            android:name=".CalendarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MapActivity"
             android:exported="false" />
         <activity

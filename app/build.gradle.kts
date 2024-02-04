@@ -21,8 +21,8 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
             )
         }
     }
@@ -33,8 +33,6 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth:22.3.1")
@@ -43,4 +41,5 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("org.osmdroid:osmdroid-android:6.1.6")
+    implementation("com.github.sundeepk:compact-calendar-view:1.9.1")
 }
