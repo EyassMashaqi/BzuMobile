@@ -65,6 +65,10 @@ public class MapActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.nav_container, new NavigationBar())
+                .commit();
 
         Context ctx = this.getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));

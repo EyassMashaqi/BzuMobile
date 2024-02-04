@@ -46,17 +46,17 @@
                         android:id="@+id/map_icon"
                         android:layout_width="135dp"
                         android:layout_height="125dp"
-                        android:src="@drawable/map" />
+                        android:src="@drawable/freeelectives"/>
 
                     <TextView
                         android:id="@+id/textView2"
-                        android:layout_width="248dp"
+                        android:layout_width="231dp"
                         android:layout_height="123dp"
                         android:fontFamily="@font/aldrich"
                         android:gravity="center"
-                        android:text="Maps"
+                        android:text="Electives"
                         android:textColor="#FFFEFE"
-                        android:textSize="48sp"
+                        android:textSize="40sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -85,17 +85,17 @@
                         android:id="@+id/icon1"
                         android:layout_width="135dp"
                         android:layout_height="125dp"
-                        android:src="@drawable/event" />
+                        android:src="@drawable/switching" />
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="123dp"
+                        android:layout_width="249dp"
+                        android:layout_height="129dp"
                         android:fontFamily="@font/aldrich"
                         android:gravity="center"
-                        android:text="Events"
+                        android:text="Switching Majors"
                         android:textColor="#FFFEFE"
-                        android:textSize="48sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -124,16 +124,17 @@
                         android:id="@+id/icon3"
                         android:layout_width="135dp"
                         android:layout_height="125dp"
-                        android:src="@drawable/faq" />
+                        android:src="@drawable/social" />
+
                     <TextView
                         android:id="@+id/textView4"
-                        android:layout_width="248dp"
+                        android:layout_width="228dp"
                         android:layout_height="123dp"
                         android:fontFamily="@font/aldrich"
                         android:gravity="center"
-                        android:text="FAQ"
+                        android:text="Social Media"
                         android:textColor="#FFFEFE"
-                        android:textSize="48sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -162,16 +163,17 @@
                         android:id="@+id/icon4"
                         android:layout_width="135dp"
                         android:layout_height="125dp"
-                        android:src="@drawable/study" />
+                        android:src="@drawable/cont" />
+
                     <TextView
                         android:id="@+id/textView5"
-                        android:layout_width="248dp"
+                        android:layout_width="226dp"
                         android:layout_height="123dp"
                         android:fontFamily="@font/aldrich"
                         android:gravity="center"
-                        android:text="Study"
+                        android:text="Contact Us"
                         android:textColor="#FFFEFE"
-                        android:textSize="48sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
