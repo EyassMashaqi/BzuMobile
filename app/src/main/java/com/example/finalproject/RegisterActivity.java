@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
     public void addUser(String userid,String username,String password){
-        String url="http://10.0.2.2:5000/add";
+        String url=RegisterActivity.this.getString(R.string.ip)+ "/add";
         RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
         JSONObject jsonParams = new JSONObject();
 
@@ -90,7 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             str = response.getString("result");
                             Intent intent=new Intent(RegisterActivity.this,HomeActivity.class);
-                            LoginActivity.user_global = userid;
+                            LoginActivity.userId_global = userid;
+                            LoginActivity.userName_global = username;
                             intent.putExtra("user_name", username);
                             startActivity(intent);
                         }catch (JSONException e){

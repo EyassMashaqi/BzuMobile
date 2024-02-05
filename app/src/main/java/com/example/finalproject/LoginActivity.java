@@ -37,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     public static final String NAME = "NAME";
     public static final String PASS = "PASS";
     public static final String FLAG = "FLAG";
-    public static String user_global = "";
+    public static String userId_global = "";
+    public static String userName_global = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         checkPrefs();
 
 
-
-//        Login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(LoginActivity.this, MapActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +83,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkUser(String idUser,String userpass){
-        String url="http://10.0.2.2:5000/login";
+        Log.d("yosef", LoginActivity.this.getString(R.string.ip)+"");
+        String url=url=LoginActivity.this.getString(R.string.ip)+"/login";
         RequestQueue queue = Volley.newRequestQueue(this);
         JSONObject postData = new JSONObject();
         try {
@@ -108,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                     String user_name = response.getString("name");
                     Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
                     String pass = user_name.replaceAll("\\p{P}","");
-                    intent.putExtra("user_name", pass);
                     if (check.isChecked()) {
                         if (!flag) {
                             editor.putString(NAME, userid.getText().toString());
@@ -122,10 +114,10 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putBoolean(FLAG, false);
                         editor.commit();
                     }
-                    user_global = idUser;
-
+                    userId_global = idUser;
+                    userName_global = pass;
                     startActivity(intent);
-
+                    Toast.makeText(LoginActivity.this,"Click on your Name\nto edit your profile",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(LoginActivity.this,"Invalid ID or Password",Toast.LENGTH_SHORT).show();
 

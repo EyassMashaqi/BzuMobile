@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -109,7 +110,7 @@ public class MapActivity extends AppCompatActivity {
         allMarks = new ArrayList<>();
 
 
-        String url = "http://10.0.2.2:5000/marker";
+        String url = url=MapActivity.this.getString(R.string.ip)+"/marker";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -178,32 +179,34 @@ public class MapActivity extends AppCompatActivity {
             }
         });
         queue.add(request);
-
+        final Handler handler = new Handler();
         MyLocationNewOverlay mLocationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(this), map);
-
         mLocationOverlay.enableMyLocation();
-     //   mLocationOverlay.enableFollowLocation();
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
 
 
-//        userLat=31.958198;
-//        userLon=35.184281;
-        if(31.964218 > userLat && userLat > 31.955589 && 35.187734 > userLon && userLon > 35.176713){
-            map.getOverlays().add(mLocationOverlay);
-//            //new geo point for demo
-//            GeoPoint userPoint = new GeoPoint(userLat, userLon);
-//            Marker userMarker = new Marker(map);
-//            userMarker.setPosition(userPoint);
-//            //userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
-//            userMarker.setIcon(getResources().getDrawable(org.osmdroid.library.R.drawable.person));
-//            userMarker.setTitle("You are here");
-//            map.getOverlays().add(userMarker);
-//            //map.getController().setCenter(userPoint);
-            Log.d("location","in the area");
-        }
-        else
-            Toast.makeText(MapActivity.this, "You are not in the University area",
-                    Toast.LENGTH_SHORT).show();
-
+        userLat=31.958198;
+        userLon=35.184281;
+                if (31.964218 > userLat && 32 > userLat && 35.187734 > userLon && userLon > 35.176713) {
+                    map.getOverlays().add(mLocationOverlay);
+            //new geo point for demo
+                    GeoPoint userPoint = new GeoPoint(userLat, userLon);
+                    Marker userMarker = new Marker(map);
+                    userMarker.setPosition(userPoint);
+                   // userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
+                    userMarker.setIcon(getResources().getDrawable(org.osmdroid.library.R.drawable.person));
+                    userMarker.setTitle("You are here");
+                    map.getOverlays().add(userMarker);
+            //map.getController().setCenter(userPoint);
+                    Log.d("location", "in the area");
+                } else
+                    Toast.makeText(MapActivity.this, "You are not in the University area",
+                            Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

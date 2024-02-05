@@ -28,7 +28,7 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".FirstPageActivity"
+            android:name=".ContactActivity"
             android:exported="false" />
         <activity
             android:name=".CalendarActivity"
