@@ -22,6 +22,7 @@ public class NavigationBar extends Fragment {
         ImageView calendar_button = view.findViewById(R.id.calendar_button);
         ImageView map_button = view.findViewById(R.id.map_button);
         ImageView home_button = view.findViewById(R.id. home_button);
+        ImageView faq_button = view.findViewById(R.id.faq_button);
         TextView username_textview=view.findViewById(R.id.username_textview);
 
         username_textview.setText("Welcome "+LoginActivity.userName_global);
@@ -55,6 +56,15 @@ public class NavigationBar extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), HomeActivity.class));
+                }
+            });
+        }
+
+        if (!(activity instanceof FaqActivity)) {
+            faq_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), FaqActivity.class));
                 }
             });
         }
