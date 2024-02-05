@@ -90,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             str = response.getString("result");
                             Intent intent=new Intent(RegisterActivity.this,HomeActivity.class);
+                            LoginActivity.user_global = userid;
                             intent.putExtra("user_name", username);
                             startActivity(intent);
                         }catch (JSONException e){
