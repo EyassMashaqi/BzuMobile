@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     public static final String NAME = "NAME";
     public static final String PASS = "PASS";
     public static final String FLAG = "FLAG";
+    public static String user_global = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (success){//200
                     String user_name = response.getString("name");
                     Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
-                    intent.putExtra("user_name", user_name);
+                    String pass = user_name.replaceAll("\\p{P}","");
+                    intent.putExtra("user_name", pass);
                     if (check.isChecked()) {
                         if (!flag) {
                             editor.putString(NAME, userid.getText().toString());
@@ -120,6 +122,8 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putBoolean(FLAG, false);
                         editor.commit();
                     }
+                    user_global = idUser;
+
                     startActivity(intent);
 
                 }else{
