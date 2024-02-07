@@ -68,13 +68,16 @@ public class NavigationBar extends Fragment {
                 }
             });
         }
-        username_textview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), HomeActivity.class));
 
-            }
-        });
+        if (!(activity instanceof MapActivity)) {
+            username_textview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), EditProfileActivity.class));
+
+                }
+            });
+        }
 
         return view;
     }

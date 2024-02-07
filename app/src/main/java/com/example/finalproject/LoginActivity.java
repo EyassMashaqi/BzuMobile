@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         userid=findViewById(R.id.iduser);
-        password=findViewById(R.id.pass);
+        password=findViewById(R.id.pass1);
         check=findViewById(R.id.Remember);
         signup=findViewById(R.id.signbtn);
         Login=findViewById(R.id.loginbtn);
