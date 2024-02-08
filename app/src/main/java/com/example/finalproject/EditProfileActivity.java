@@ -51,8 +51,17 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String newPass=pass.getText().toString();
                 String confirmPass=conpass.getText().toString();
+
+                if (newPass.isEmpty() || newPass.isEmpty()) {
+                    Toast.makeText(EditProfileActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!newPass.equals(confirmPass)) {
                     Toast.makeText(EditProfileActivity.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (newPass.length() < 8) {
+                    Toast.makeText(EditProfileActivity.this, "Password must be at least 8 characters long", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 updatePassword("user_id",newPass);

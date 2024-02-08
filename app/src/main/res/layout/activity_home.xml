@@ -33,7 +33,7 @@
                 app:cardCornerRadius="30dp"
 
                 app:cardElevation="20dp"
-                app:cardUseCompatPadding="false">>
+                app:cardUseCompatPadding="false">
 
 
                 <LinearLayout
