@@ -25,6 +25,7 @@
                 android:layout_weight="0.75"
                 android:text="YourUsername"
                 android:textColor="#FFFFFF"
+                android:fontFamily="@font/aldrich"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -46,7 +47,6 @@
             android:layout_weight="0.125"
             android:background="#000000"
             android:orientation="horizontal">
-
         </LinearLayout>
 
         <LinearLayout

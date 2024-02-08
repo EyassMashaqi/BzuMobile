@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
 import androidx.fragment.app.Fragment;
 
 
@@ -23,9 +22,11 @@ public class NavigationBar extends Fragment {
         ImageView map_button = view.findViewById(R.id.map_button);
         ImageView home_button = view.findViewById(R.id. home_button);
         ImageView faq_button = view.findViewById(R.id.faq_button);
+        ImageView smm_button = view.findViewById(R.id.smm_button);
         TextView username_textview=view.findViewById(R.id.username_textview);
 
-        username_textview.setText("Welcome "+LoginActivity.userName_global);
+        username_textview.setText(LoginActivity.userName_global);
+
         Activity activity = null;
         try {
             activity = getActivity();
@@ -38,8 +39,10 @@ public class NavigationBar extends Fragment {
             calendar_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     startActivity(new Intent(getActivity(), CalendarActivity.class));
+                    if (getActivity() != null) {
+                        getActivity().finish();
+                    }
                 }
             });
         }
@@ -48,6 +51,9 @@ public class NavigationBar extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), MapActivity.class));
+                    if (getActivity() != null) {
+                        getActivity().finish();
+                    }
                 }
             });
         }
@@ -65,6 +71,9 @@ public class NavigationBar extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), FaqActivity.class));
+                    if (getActivity() != null) {
+                        getActivity().finish();
+                    }
                 }
             });
         }
@@ -74,11 +83,41 @@ public class NavigationBar extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), EditProfileActivity.class));
-
+                    if (getActivity() != null) {
+                        getActivity().finish();
+                    }
                 }
             });
         }
 
+        if(activity instanceof CalendarActivity){
+            calendar_button.setColorFilter(Color.BLACK);
+            map_button.setColorFilter(Color.WHITE);
+            faq_button.setColorFilter(Color.WHITE);
+            smm_button.setColorFilter(Color.WHITE);
+        }
+
+        if(activity instanceof FaqActivity){
+            calendar_button.setColorFilter(Color.WHITE);
+            map_button.setColorFilter(Color.WHITE);
+            faq_button.setColorFilter(Color.BLACK);
+            smm_button.setColorFilter(Color.WHITE);
+        }
+
+        if(activity instanceof MapActivity){
+            calendar_button.setColorFilter(Color.WHITE);
+            map_button.setColorFilter(Color.BLACK);
+            faq_button.setColorFilter(Color.WHITE);
+            smm_button.setColorFilter(Color.WHITE);
+        }
+
+        if(activity instanceof HomeActivity){
+            calendar_button.setColorFilter(Color.WHITE);
+            map_button.setColorFilter(Color.WHITE);
+            faq_button.setColorFilter(Color.WHITE);
+            smm_button.setColorFilter(Color.WHITE);
+        }
+        // study activity code goes here (button activation and navigation bar color changes)
         return view;
     }
 }

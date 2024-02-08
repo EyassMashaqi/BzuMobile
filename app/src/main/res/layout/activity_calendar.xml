@@ -37,6 +37,4 @@
         app:compactCalendarTextColor="#000000"
         app:compactCalendarTextSize="18sp" />
 
-
-
 </LinearLayout>

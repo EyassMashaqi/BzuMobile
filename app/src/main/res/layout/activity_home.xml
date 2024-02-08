@@ -31,7 +31,6 @@
                 android:foreground="?attr/selectableItemBackground"
                 app:cardBackgroundColor="#006325"
                 app:cardCornerRadius="30dp"
-
                 app:cardElevation="20dp"
                 app:cardUseCompatPadding="false">
 

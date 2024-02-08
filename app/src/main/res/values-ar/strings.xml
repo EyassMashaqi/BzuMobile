@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="majors_page_title">تحويل التخصص</string>
+    <string name="ritaj_button">صفحة رتاج</string>
+    <string name="contact_us_button">تواصل معنا</string>
+    <string name="language_switch">الانجليزية</string>
+    <string name="majors_body"><b>تحويل التخصص في نفس الكلية</b>\n
+    لتحويل التخصص في نفس الكلية, يجب على الطالب أن يحصل على معدل علامات معين في مواد معينة من التخصص الحالي حتى يتمكن من التحويل الى التخصص المراد, المواد المطلوبة موجود في <b>رابط رتاج في الاسفل</b>.\n\n
+        <b>تحويل التخصص لكلية اخرى:</b>\n
+    نفس متطلبات التحويل في نفس الكلية ولكن في العادة يتطلب معدل اعلى في المواد المحددة في التخصص المراد للتحويل.</string>
+</resources>

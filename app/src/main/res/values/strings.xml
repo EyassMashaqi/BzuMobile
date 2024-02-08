@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">FinalProject</string>
-    <string name="router">http://192.168.1.4:5000</string>
+    <string name="app_name" translatable="false">FinalProject</string>
+    <string name="router" translatable="false">http://192.168.1.4:5000</string>
     <!-- edit router to your ip then rename it as ip  -->
-    <string name="ip">http://10.0.2.2:5000</string>
+    <string name="ip" translatable="false">http://10.0.2.2:5000</string>
+    <string name="majors_page_title">Switching Majors</string>
+    <string name="ritaj_button">Ritaj Link</string>
+    <string name="contact_us_button">Contact Us</string>
+    <string name="language_switch">Arabic</string>
+    <string name="majors_body"><b>Switching Majors in same college:</b>\n
+    To switch to another major in the same college, you have to meet a certain average in certain subjects in your current major. You can view these subjects from the <b>ritaj link below</b>.\n\n
+        <b>Switching Majors to another college:</b>\n
+    The same requirements as switching majors in the same college, but usually a higher average is required.
+</string>
 </resources>
