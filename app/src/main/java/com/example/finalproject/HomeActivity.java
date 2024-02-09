@@ -9,7 +9,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-
 public class HomeActivity extends AppCompatActivity {
     private CardView mapCard;
     private CardView eventCard;
