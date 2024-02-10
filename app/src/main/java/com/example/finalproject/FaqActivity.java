@@ -14,6 +14,8 @@ public class FaqActivity extends AppCompatActivity {
 
     private CardView ElectivesCard;
 
+    private CardView socialMedia;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,11 @@ public class FaqActivity extends AppCompatActivity {
         ElectivesCard = findViewById(R.id.electives);
         ElectivesCard.setOnClickListener(e->{
             Intent intent = new Intent(FaqActivity.this, ElectivesActivity.class);
+            startActivity(intent);
+        });
+        socialMedia = findViewById(R.id.SocialMedia);
+        socialMedia.setOnClickListener(e->{
+            Intent intent = new Intent(FaqActivity.this, SocialMediaAct.class);
             startActivity(intent);
         });
     }

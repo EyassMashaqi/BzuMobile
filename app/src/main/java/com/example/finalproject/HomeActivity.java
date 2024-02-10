@@ -13,6 +13,7 @@ public class HomeActivity extends AppCompatActivity {
     private CardView mapCard;
     private CardView eventCard;
     private CardView FaqCard;
+    private CardView studyCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        studyCard = findViewById(R.id.card_view3);
+        studyCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeActivity.this,StudyActivity.class);
+                startActivity(intent);
+            }
+        });
+
         FaqCard = findViewById(R.id.card_view4);
         FaqCard.setOnClickListener(new View.OnClickListener() {
             @Override
