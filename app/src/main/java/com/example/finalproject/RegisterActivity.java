@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
         pass1=findViewById(R.id.crepass);
         pass2=findViewById(R.id.crepass2);
         signupuser = findViewById(R.id.signupbtn);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
+
 
         signupuser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String userName=user_name.getText().toString();
                 String passuser=pass1.getText().toString();
                 String passuser2=pass2.getText().toString();
+
 
                 if (userID.isEmpty() || userName.isEmpty() || passuser.isEmpty() || passuser2.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();

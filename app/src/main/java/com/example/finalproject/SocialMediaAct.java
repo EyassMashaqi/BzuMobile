@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -19,6 +20,9 @@ public class SocialMediaAct extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
+
         TextView first = findViewById(R.id.first);
         TextView sec = findViewById(R.id.sec);
         TextView th = findViewById(R.id.th);

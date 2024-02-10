@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 
 import android.content.Intent;
@@ -39,6 +40,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+        getWindow().setStatusBarColor(ContextCompat.getColor(EditProfileActivity.this, R.color.gre));
 
         pass=findViewById(R.id.pass1);
         conpass=findViewById(R.id.conpass2);

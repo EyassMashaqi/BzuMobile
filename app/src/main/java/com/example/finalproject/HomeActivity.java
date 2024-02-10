@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,6 +24,9 @@ public class HomeActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
+
 
         mapCard = findViewById(R.id.card_view1);
         mapCard.setOnClickListener(new View.OnClickListener() {

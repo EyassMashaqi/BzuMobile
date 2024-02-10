@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,9 @@ public class ContactActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(ContactActivity.this, R.color.gre));
+
 
         email = findViewById(R.id.email);
         message = findViewById(R.id.message);

@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,6 +56,7 @@ public class StudyActivity extends AppCompatActivity implements SelectCourse{
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
 
+        getWindow().setStatusBarColor(ContextCompat.getColor(StudyActivity.this, R.color.gre));
         recyclerView = findViewById(R.id.m_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
