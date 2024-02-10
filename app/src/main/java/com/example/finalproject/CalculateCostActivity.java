@@ -1,6 +1,8 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,7 @@ public class CalculateCostActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
 
         hourlyRateEditText = findViewById(R.id.hourlyRateEditText);
         hourEditText = findViewById(R.id.hoursEditText);

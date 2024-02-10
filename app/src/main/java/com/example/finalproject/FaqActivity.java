@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ public class FaqActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
 
         ContactUsCard = findViewById(R.id.contacts_us);
         ContactUsCard.setOnClickListener(e->{
