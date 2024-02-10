@@ -14,6 +14,7 @@ public class FaqActivity extends AppCompatActivity {
 
     private CardView ElectivesCard;
     private CardView CalculateCostCard;
+    private CardView socialMedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,11 @@ public class FaqActivity extends AppCompatActivity {
         CalculateCostCard = findViewById(R.id.CalculateCost);
         CalculateCostCard.setOnClickListener(e->{
             Intent intent = new Intent(FaqActivity.this, CalculateCostActivity.class);
+            startActivity(intent);
+        });
+        socialMedia = findViewById(R.id.SocialMedia);
+        socialMedia.setOnClickListener(e->{
+            Intent intent = new Intent(FaqActivity.this, SocialMediaAct.class);
             startActivity(intent);
         });
     }

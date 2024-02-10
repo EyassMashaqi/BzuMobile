@@ -31,6 +31,9 @@
             android:name=".MajorsActivity"
             android:exported="false" />
         <activity
+            android:name=".CalculateCostActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
