@@ -13,7 +13,7 @@ public class FaqActivity extends AppCompatActivity {
     private CardView MajorsCard;
 
     private CardView ElectivesCard;
-
+    private CardView CalculateCostCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,11 @@ public class FaqActivity extends AppCompatActivity {
         ElectivesCard = findViewById(R.id.electives);
         ElectivesCard.setOnClickListener(e->{
             Intent intent = new Intent(FaqActivity.this, ElectivesActivity.class);
+            startActivity(intent);
+        });
+        CalculateCostCard = findViewById(R.id.CalculateCost);
+        CalculateCostCard.setOnClickListener(e->{
+            Intent intent = new Intent(FaqActivity.this, CalculateCostActivity.class);
             startActivity(intent);
         });
     }
