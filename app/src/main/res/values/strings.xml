@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">FinalProject</string>
-    <string name="local_network" translatable="false">http://192.168.1.4:5000</string>
+    <string name="local_network" translatable="false">http://192.168.1.4:5000/</string>
     <!-- edit router to your ip then rename it as ip  -->
-    <string name="ip" translatable="false">http://10.0.2.2:5000</string>
+    <string name="ip" translatable="false">http://10.0.2.2:5000/</string>
     <string name="majors_page_title">Switching Majors</string>
     <string name="ritaj_button">Ritaj Link</string>
     <string name="contact_us_button">Contact Us</string>
