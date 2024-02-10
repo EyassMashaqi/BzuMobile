@@ -39,7 +39,7 @@ public class ElectivesActivity extends AppCompatActivity {
     }
 
     private void loadElectivesData() {
-        String url = "http://10.0.2.2:5000/electives";
+        String url = ElectivesActivity.this.getString(R.string.ip)+"/electives";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,

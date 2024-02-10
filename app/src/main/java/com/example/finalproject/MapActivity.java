@@ -60,8 +60,7 @@ public class MapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //create map and put all markers on it
-        //make enum class, with list of markers,with name to easy fetching from database
+
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -141,8 +140,7 @@ public class MapActivity extends AppCompatActivity {
                                 double lat = temp.getDouble(2);
                                 double lon = temp.getDouble(3);
                                 String name = temp.getString(0);
-                                // AllMarks tempMark = new AllMarks(map,type);
-                                //search for the type if in the list
+
                                 AllMarks tempMark = null;
                                 for (AllMarks mark : allMarks) {
                                     if (mark.getType().equals(type)) {
@@ -197,11 +195,9 @@ public class MapActivity extends AppCompatActivity {
                     GeoPoint userPoint = new GeoPoint(userLat, userLon);
                     Marker userMarker = new Marker(map);
                     userMarker.setPosition(userPoint);
-                   // userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
                     userMarker.setIcon(getResources().getDrawable(org.osmdroid.library.R.drawable.person));
                     userMarker.setTitle("You are here");
                     map.getOverlays().add(userMarker);
-            //map.getController().setCenter(userPoint);
                     Log.d("location", "in the area");
                 } else
                     Toast.makeText(MapActivity.this, "You are not in the University area",

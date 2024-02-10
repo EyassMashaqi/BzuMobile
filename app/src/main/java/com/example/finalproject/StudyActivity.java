@@ -77,7 +77,6 @@ public class StudyActivity extends AppCompatActivity implements SelectCourse{
 
                         for (int i = 0; i < response.length(); i++) {
                             try {
-//                                JSONObject jsonObject = response.getJSONObject(i);
                                 JSONArray jsonObject = response.getJSONArray(i);
 
                                 String id = jsonObject.getString(0);
@@ -110,7 +109,6 @@ public class StudyActivity extends AppCompatActivity implements SelectCourse{
 
     @Override
     public void onItemClick(int pos) {
-//        Log.d("hh", "hi");
         String url = idd.get(pos);
         Log.d("hh", url);
         Intent intent = new Intent(Intent.ACTION_VIEW);

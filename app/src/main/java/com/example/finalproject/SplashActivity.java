@@ -20,12 +20,10 @@ public class SplashActivity extends AppCompatActivity {
         motionLayout.addTransitionListener(new MotionLayout.TransitionListener() {
             @Override
             public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
-                // Your code for onTransitionStarted
             }
 
             @Override
             public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
-                // Your code for onTransitionChange
             }
 
             @Override
@@ -36,7 +34,6 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
-                // Your code for onTransitionTrigger
             }
         });
     }

@@ -140,7 +140,6 @@ public class NavigationBar extends Fragment {
             faq_button.setColorFilter(Color.WHITE);
             smm_button.setColorFilter(Color.BLACK);
         }
-        // study activity code goes here (button activation and navigation bar color changes)
         return view;
     }
 
