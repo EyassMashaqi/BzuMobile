@@ -28,14 +28,6 @@ public class AllMarks {
         this.map = map;
         this.isVisible = true;
         markers = new ArrayList<>();
-//        for(AllMarks mark : AllMarks.values()){
-//            mark.setMap(map);
-//            for(int i=0;i<10;i++){
-//                mark.newMarker(31+i,35+i,mark.name()+i);
-//                map.getOverlays().add(mark.markers.get(i));
-//            }
-//        }
-
     }
 
     public ArrayList<Marker> getMarkers(){

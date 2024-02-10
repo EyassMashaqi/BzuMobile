@@ -1,5 +1,10 @@
 package com.example.finalproject;
 
+import static com.example.finalproject.LoginActivity.FLAG;
+import static com.example.finalproject.LoginActivity.NAME;
+import static com.example.finalproject.LoginActivity.PASS;
+import static com.example.finalproject.LoginActivity.editor;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -73,7 +78,9 @@ public class EditProfileActivity extends AppCompatActivity {
         delbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 deleteAccount(LoginActivity.userId_global);
+
             }
         });
 
@@ -106,6 +113,10 @@ public class EditProfileActivity extends AppCompatActivity {
                         boolean success = response.getBoolean("success");
                         if (success) {
                             Toast.makeText(EditProfileActivity.this, "Password updated successfully.", Toast.LENGTH_SHORT).show();
+                            editor.putString(NAME, "");
+                            editor.putString(PASS, "");
+                            editor.putBoolean(FLAG, false);
+                            editor.commit();
                         } else {
                             Toast.makeText(EditProfileActivity.this, "Failed to update password.", Toast.LENGTH_SHORT).show();
                         }
@@ -127,6 +138,10 @@ public class EditProfileActivity extends AppCompatActivity {
                         if (success){
                             Toast.makeText(EditProfileActivity.this, "Account deleted successfully.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(EditProfileActivity.this, LoginActivity.class));
+                            editor.putString(NAME, "");
+                            editor.putString(PASS, "");
+                            editor.putBoolean(FLAG, false);
+                            editor.commit();
                             finish();
                         }else {
                             Toast.makeText(EditProfileActivity.this, "Failed to delete account.", Toast.LENGTH_SHORT).show();

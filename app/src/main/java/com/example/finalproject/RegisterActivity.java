@@ -98,6 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                             LoginActivity.userName_global = username;
                             intent.putExtra("user_name", username);
                             startActivity(intent);
+                            finish();
                         }catch (JSONException e){
                             e.printStackTrace();
                         }

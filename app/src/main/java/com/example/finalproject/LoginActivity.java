@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -34,12 +36,13 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox check;
     private boolean flag = false;
     private SharedPreferences prefs;
-    private static SharedPreferences.Editor editor;
+    public static SharedPreferences.Editor editor;
     public static final String NAME = "NAME";
     public static final String PASS = "PASS";
     public static final String FLAG = "FLAG";
     public static String userId_global = "";
     public static String userName_global = "";
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkUser(String idUser,String userpass){
-        Log.d("yosef", LoginActivity.this.getString(R.string.ip)+"");
+
         String url=url=LoginActivity.this.getString(R.string.ip)+"/login";
         RequestQueue queue = Volley.newRequestQueue(this);
         JSONObject postData = new JSONObject();
@@ -121,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                     userName_global = pass;
                     startActivity(intent);
                     Toast.makeText(LoginActivity.this,"Click on your Name\nto edit your profile",Toast.LENGTH_SHORT).show();
+                    finish();
                 }else{
                     Toast.makeText(LoginActivity.this,"Invalid ID or Password",Toast.LENGTH_SHORT).show();
 
@@ -160,5 +164,23 @@ public class LoginActivity extends AppCompatActivity {
         editor = prefs.edit();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
 
 }

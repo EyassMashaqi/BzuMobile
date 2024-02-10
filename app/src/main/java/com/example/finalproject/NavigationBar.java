@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
+
 
 public class NavigationBar extends Fragment {
 
@@ -40,28 +42,33 @@ public class NavigationBar extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), CalendarActivity.class));
-                    if (getActivity() != null) {
+                    if (getActivity() != null && !(getActivity() instanceof HomeActivity)) {
                         getActivity().finish();
                     }
                 }
             });
         }
+
         if (!(activity instanceof MapActivity)) {
             map_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), MapActivity.class));
-                    if (getActivity() != null) {
+                    if (getActivity() != null && !(getActivity() instanceof HomeActivity)) {
                         getActivity().finish();
                     }
                 }
             });
         }
+
         if (!(activity instanceof HomeActivity)) {
             home_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), HomeActivity.class));
+                    if (getActivity() != null) {
+                        getActivity().finish();
+                    }
                 }
             });
         }
@@ -71,7 +78,7 @@ public class NavigationBar extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), FaqActivity.class));
-                    if (getActivity() != null) {
+                    if (getActivity() != null && !(getActivity() instanceof HomeActivity)) {
                         getActivity().finish();
                     }
                 }
@@ -83,7 +90,7 @@ public class NavigationBar extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), EditProfileActivity.class));
-                    if (getActivity() != null) {
+                    if (getActivity() != null && !(getActivity() instanceof HomeActivity)) {
                         getActivity().finish();
                     }
                 }
@@ -94,7 +101,7 @@ public class NavigationBar extends Fragment {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(), StudyActivity.class));
-                    if (getActivity() != null) {
+                    if (getActivity() != null && !(getActivity() instanceof HomeActivity)) {
                         getActivity().finish();
                     }
                 }
@@ -136,4 +143,5 @@ public class NavigationBar extends Fragment {
         // study activity code goes here (button activation and navigation bar color changes)
         return view;
     }
+
 }
