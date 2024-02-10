@@ -22,7 +22,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".CalculateCostActivity"
+            android:name=".SocialMediaAct"
             android:exported="false" />
         <activity
             android:name=".StudyActivity"

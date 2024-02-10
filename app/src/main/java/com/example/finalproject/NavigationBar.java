@@ -78,7 +78,7 @@ public class NavigationBar extends Fragment {
             });
         }
 
-        if (!(activity instanceof MapActivity)) {
+        if (!(activity instanceof EditProfileActivity)) {
             username_textview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -89,7 +89,17 @@ public class NavigationBar extends Fragment {
                 }
             });
         }
-
+        if (!(activity instanceof StudyActivity)) {
+            smm_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), StudyActivity.class));
+                    if (getActivity() != null) {
+                        getActivity().finish();
+                    }
+                }
+            });
+        }
         if(activity instanceof CalendarActivity){
             calendar_button.setColorFilter(Color.BLACK);
             map_button.setColorFilter(Color.WHITE);
@@ -116,6 +126,12 @@ public class NavigationBar extends Fragment {
             map_button.setColorFilter(Color.WHITE);
             faq_button.setColorFilter(Color.WHITE);
             smm_button.setColorFilter(Color.WHITE);
+        }
+        if(activity instanceof StudyActivity){
+            calendar_button.setColorFilter(Color.WHITE);
+            map_button.setColorFilter(Color.WHITE);
+            faq_button.setColorFilter(Color.WHITE);
+            smm_button.setColorFilter(Color.BLACK);
         }
         // study activity code goes here (button activation and navigation bar color changes)
         return view;

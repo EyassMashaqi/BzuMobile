@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -53,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         Login=findViewById(R.id.loginbtn);
         setupSharedPrefs();
         checkPrefs();
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
 
 
         signup.setOnClickListener(new View.OnClickListener() {

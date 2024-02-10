@@ -70,6 +70,7 @@ public class MapActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
 
         Context ctx = this.getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));

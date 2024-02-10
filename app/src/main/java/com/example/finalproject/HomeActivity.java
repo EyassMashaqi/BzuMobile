@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ public class HomeActivity extends AppCompatActivity {
     private CardView mapCard;
     private CardView eventCard;
     private CardView FaqCard;
+    private CardView studyCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,9 @@ public class HomeActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
+
 
         mapCard = findViewById(R.id.card_view1);
         mapCard.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +45,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        studyCard = findViewById(R.id.card_view3);
+        studyCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeActivity.this,StudyActivity.class);
+                startActivity(intent);
+            }
+        });
+
         FaqCard = findViewById(R.id.card_view4);
         FaqCard.setOnClickListener(new View.OnClickListener() {
             @Override

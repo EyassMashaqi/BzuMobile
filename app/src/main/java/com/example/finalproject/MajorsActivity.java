@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +27,9 @@ public class MajorsActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.nav_container, new NavigationBar())
                 .commit();
+
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.gre));
 
 
         TextView ritaj_button = findViewById(R.id.ritaj_majorsButton);
